@@ -52,12 +52,15 @@ class _CartScreenState extends State<CartScreen> {
                             width: setWidth(context) * 0.1,
                           ),
                           const SizedBox(
-                            child: Text(
-                              'Shopping Cart',
-                              style: TextStyle(
-                                  color: Color(0xff1D1C1C),
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'Shopping Cart',
+                                style: TextStyle(
+                                    color: Color(0xff1D1C1C),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           )
                         ],
@@ -253,14 +256,10 @@ class _CartScreenState extends State<CartScreen> {
               print(ex);
             }
           },
-          child: Text(
+          child: const Text(
             'Confirm',
             style: TextStyle(
-                color: address.isEmpty
-                    ? Colors.blue.withOpacity(0.4)
-                    : Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 15),
+                color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 15),
           ),
         )
       ],

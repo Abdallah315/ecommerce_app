@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/orders.dart';
@@ -42,7 +43,7 @@ class OrdersScreen extends StatelessWidget {
                     //     arguments: orders[index].documentId);
                   },
                   child: Container(
-                    height: MediaQuery.of(context).size.height * .2,
+                    height: setHeight(context) * .2,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.blue,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/data/models/products.dart';
 import 'package:ecommerce_app/presentation_layer/screens/product_details.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context)
@@ -30,7 +31,7 @@ class ProductItem extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: setHeight(context) * 0.17,
                 width: MediaQuery.of(context).size.width,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
@@ -45,10 +46,13 @@ class ProductItem extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                allProduct.name,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  allProduct.name,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ),
               Text(
                 '\$ ${allProduct.price}',

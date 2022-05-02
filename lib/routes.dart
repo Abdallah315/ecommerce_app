@@ -3,7 +3,6 @@ import 'package:ecommerce_app/presentation_layer/screens/home_page.dart';
 import 'package:ecommerce_app/presentation_layer/screens/main_page.dart';
 import 'package:ecommerce_app/presentation_layer/screens/orders_screen.dart';
 import 'package:ecommerce_app/presentation_layer/screens/product_details.dart';
-import 'package:ecommerce_app/presentation_layer/screens/settings-screen.dart';
 import 'package:flutter/cupertino.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -12,5 +11,4 @@ final Map<String, WidgetBuilder> routes = {
   CartScreen.routeName: (context) => const CartScreen(),
   MainPage.routeName: ((context) => const MainPage()),
   OrdersScreen.routeName: (context) => OrdersScreen(),
-  SettingsScreen.routeName: (context) => const SettingsScreen(),
 };

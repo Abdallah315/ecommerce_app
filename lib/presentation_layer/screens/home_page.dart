@@ -1,8 +1,6 @@
 import 'package:ecommerce_app/presentation_layer/screens/main_page.dart';
 import 'package:ecommerce_app/presentation_layer/screens/orders_screen.dart';
-import 'package:ecommerce_app/presentation_layer/screens/settings-screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-  List pages = [const MainPage(), OrdersScreen(), const SettingsScreen()];
+  List pages = [const MainPage(), OrdersScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +39,6 @@ class _HomePageState extends State<HomePage> {
                     Icons.account_circle,
                   ),
                   label: 'Orderrs',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    FontAwesomeIcons.edit,
-                  ),
-                  label: 'Settings',
                 ),
               ],
             ),

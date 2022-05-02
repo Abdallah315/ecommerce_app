@@ -27,164 +27,172 @@ class _ProductDetailsState extends State<ProductDetails> {
         body: Container(
           padding: const EdgeInsets.all(20),
           width: setWidth(context),
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: setWidth(context) * .13,
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  child: const Icon(Icons.arrow_back_ios),
-                  decoration: BoxDecoration(
-                      color: const Color(0xffE5EAEF),
-                      borderRadius: BorderRadius.circular(50)),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .03,
-              ),
-              SizedBox(
-                width: setWidth(context),
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: Image.asset(
-                    allProducts.location,
-                    fit: BoxFit.fill,
+          height: setHeight(context),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: setWidth(context) * .13,
+                    height: setHeight(context) * 0.06,
+                    child: const Icon(Icons.arrow_back_ios),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffE5EAEF),
+                        borderRadius: BorderRadius.circular(50)),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    child: Text(
-                      allProducts.name,
+                SizedBox(
+                  height: setHeight(context) * .03,
+                ),
+                SizedBox(
+                  width: setWidth(context),
+                  height: setHeight(context) * 0.4,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Image.asset(
+                      allProducts.location,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: setHeight(context) * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      child: Text(
+                        allProducts.name,
+                        style: const TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      child: RatingBar.builder(
+                        initialRating: 3,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemSize: 25,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.black,
+                        ),
+                        onRatingUpdate: (value) {
+                          rating = value;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: setHeight(context) * 0.03,
+                ),
+                SizedBox(
+                  child: Text(
+                    allProducts.description,
+                    style: const TextStyle(fontSize: 20, color: Colors.grey),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.04,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '\$${allProducts.price}',
                       style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 35,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(
-                    child: RatingBar.builder(
-                      initialRating: 3,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 25,
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.black,
-                      ),
-                      onRatingUpdate: (value) {
-                        rating = value;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              SizedBox(
-                child: Text(
-                  allProducts.description,
-                  style: const TextStyle(fontSize: 20, color: Colors.grey),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '\$${allProducts.price}',
-                    style: const TextStyle(
-                        fontSize: 35,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    width: setWidth(context) * 0.20,
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(
-                            color: const Color(0xff1D1C1C), width: 2)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            child: const Icon(
-                              Icons.remove,
-                              size: 15,
-                            ),
-                            onTap: subtractQuantity,
-                          ),
-                          Center(
-                              child: Text(
-                            '$_quantity',
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          )),
-                          GestureDetector(
-                            onTap: addQuantity,
-                            child: const Icon(
-                              Icons.add,
-                              size: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        addToCart(context, allProducts);
-                      });
-                    },
-                    child: Container(
-                      width: setWidth(context) * 0.2,
-                      height: MediaQuery.of(context).size.height * 0.08,
+                    Container(
+                      width: setWidth(context) * 0.20,
+                      height: setHeight(context) * 0.05,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: BlocProvider.of<CartCubit>(context)
-                                .products
-                                .contains(allProducts)
-                            ? const Color(0xff1D1C1C).withOpacity(0.4)
-                            : const Color(0xff1D1C1C),
-                      ),
-                      child: Center(
-                        child: Text(
-                          BlocProvider.of<CartCubit>(context)
-                                  .products
-                                  .contains(allProducts)
-                              ? 'Added'
-                              : 'Cart',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold),
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(
+                              color: const Color(0xff1D1C1C), width: 2)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              child: const Icon(
+                                Icons.remove,
+                                size: 15,
+                              ),
+                              onTap: subtractQuantity,
+                            ),
+                            Center(
+                                child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                '$_quantity',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                            GestureDetector(
+                              onTap: addQuantity,
+                              child: const Icon(
+                                Icons.add,
+                                size: 15,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  )
-                ],
-              )
-            ],
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          addToCart(context, allProducts);
+                        });
+                      },
+                      child: Container(
+                        width: setWidth(context) * 0.22,
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: BlocProvider.of<CartCubit>(context)
+                                  .products
+                                  .contains(allProducts)
+                              ? const Color(0xff1D1C1C).withOpacity(0.4)
+                              : const Color(0xff1D1C1C),
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              BlocProvider.of<CartCubit>(context)
+                                      .products
+                                      .contains(allProducts)
+                                  ? 'Added'
+                                  : 'Cart',
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
